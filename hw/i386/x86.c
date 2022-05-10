@@ -1125,6 +1125,7 @@ void x86_bios_rom_init(MachineState *ms, const char *default_firmware,
     }
     if (bios_size <= 0 ||
         (bios_size % 65536) != 0) {
+        fprintf(stderr, "error due to bios_size: %d\n", bios_size);
         goto bios_error;
     }
     bios = g_malloc(sizeof(*bios));
