@@ -1118,11 +1118,13 @@ void x86_bios_rom_init(MachineState *ms, const char *default_firmware,
     /* BIOS load */
     bios_name = ms->firmware ?: default_firmware;
     filename = qemu_find_file(QEMU_FILE_TYPE_BIOS, bios_name);
+    fprintf(stdout, "bios file: %s\n", filename);
     if (filename) {
         bios_size = get_image_size(filename);
     } else {
         bios_size = -1;
     }
+    fprintf(stdout, "bios name: %s, bios size: %d\n", bios_name, bios_size);
     if (bios_size <= 0 ||
         (bios_size % 65536) != 0) {
         fprintf(stderr, "error due to bios_size: %d\n", bios_size);
