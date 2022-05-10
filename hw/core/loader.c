@@ -76,7 +76,7 @@ int64_t get_image_size(const char *filename)
     fd = open(filename, O_RDONLY | O_BINARY);
     if (fd < 0)
     {
-        fprint(stderr, "open %s failed: %d\n", filename, errno);
+        fprintf(stderr, "open %s failed: %d\n", filename, errno);
         return -1;
     }
 
