@@ -62,6 +62,7 @@
 #include "hw/boards.h"
 #include "qemu/cutils.h"
 #include "sysemu/runstate.h"
+#include <errno.h>
 
 #include <zlib.h>
 
@@ -74,7 +75,11 @@ int64_t get_image_size(const char *filename)
     int64_t size;
     fd = open(filename, O_RDONLY | O_BINARY);
     if (fd < 0)
+    {
+        fprint(stderr, "open %s failed: %d\n", filename, errno);
         return -1;
+    }
+
     size = lseek(fd, 0, SEEK_END);
     close(fd);
     return size;
